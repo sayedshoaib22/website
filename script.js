@@ -240,3 +240,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     init();
 });
+function initializeSearch() {
+    const searchBox = document.getElementById('search-box');
+    const searchableItems = document.querySelectorAll('.box h3, .title');
+    searchBox.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        searchableItems.forEach(item => {
+            const parent = item.closest('.box');
+            const text = item.textContent.toLowerCase();
+            if (text.includes(searchTerm)) {
+                parent.style.display = 'block';
+            } else {
+                parent.style.display = 'none';
+            }
+        });
+    });
+}
